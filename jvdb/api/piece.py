@@ -3,6 +3,7 @@ import os
 from flask import Blueprint, jsonify, request
 from jvdb.controllers import PieceController
 from jvdb.utils import serialize_sqla
+from werkzeug.utils import secure_filename
 
 piece_api = Blueprint('piece_api', __name__, url_prefix='/api/piece')
 
@@ -11,12 +12,20 @@ piece_api = Blueprint('piece_api', __name__, url_prefix='/api/piece')
 def create():
     """ Create new piece """
     piece_dict = request.json
-    file = request.files['file']
-    if file.endswith(".jpg") or file.endswith(".JPG"):
-        file.save(os.path.join("./jvdb/static/img/", file.filename))
+    PieceController.create(piece_dict)
+    return jsonify()
 
-    piece = PieceController.create(piece_dict)
-    return jsonify(id=piece.id)
+
+@piece_api.route('/upload', methods=['POST'])
+def upload_picture():
+    """ Add new picture """
+    file = request.files.get('file')
+    if file.filename.endswith(".jpg") or file.filename.endswith(".JPG"):
+        file_location_name = os.path.join("./jvdb/static/img/",
+                                          secure_filename(file.filename))
+        file.save(file_location_name)
+
+    return jsonify(location=file_location_name)
 
 
 @piece_api.route('/<int:piece_id>', methods=['DELETE'])
@@ -41,6 +50,15 @@ def get(piece_id):
         return jsonify(error='Piece not found'), 500
 
     return jsonify(piece=serialize_sqla(piece))
+
+
+@piece_api.route('/<int:piece_id>', methods=['PUT'])
+def edit(piece_id):
+    """ Edit piece """
+    piece_dict = request.json
+    PieceController.update(piece_dict)
+
+    return jsonify()
 
 
 @piece_api.route('/all', methods=['GET'])

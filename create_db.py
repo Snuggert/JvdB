@@ -7,11 +7,18 @@ application.
 """
 from jvdb import db
 import os
+from jvdb.models import *
 from glob import glob
 
-filelist = glob("app/*.sqlite")
-filelist += (glob("app/*.db"))
+filelist = glob("jvdb/*.sqlite")
+filelist += (glob("jvdb/*.db"))
 for f in filelist:
     os.remove(f)
 
 db.create_all()
+
+
+#Main account
+jvdb = Account('jvdb', 'l3p3l')
+db.session.add(jvdb)
+db.session.commit()

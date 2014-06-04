@@ -1,0 +1,112 @@
+{% extends "admin_body.htm" %}
+
+{% block includes %}
+    <link href="/static/css/piece.css" rel="stylesheet">
+    <script src="/static/libraries/jquery/jquery-ui.min.js"></script>
+    <script src="/static/libraries/jquery/jquery.fileupload.js"></script>
+    <script src="/static/js/admin/piece.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div id='new-piece'></div>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+                <div class='panel-title'>Stukken</div>
+            </div>
+
+            <div class='panel-body'>
+                <button id='new-btn' class='btn btn-primary'>
+                    <strong>+</strong> Voeg nieuw stuk toe
+                </button>
+            </div>
+            <table class="table table-striped custab" id="pieces">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Beschrijving</th>
+                        <th>Serie</th>
+                        <th class="text-center">Actie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type='text/template' id='piece-view-template'>
+        <% _.each(pieces, function(piece) { %>
+            <tr data-id='<%= piece.get('id') %>'>
+                <td><%= piece.get('name') %></td>
+                <td><%= piece.get('description') %></td>
+                <td><%= piece.piece_serie.get('name') %></td>
+                <td class='text-right'>
+                    <button class='edit btn btn-info btn-xs'>
+                        <span class='glyphicon glyphicon-edit'></span>
+                    </button>
+                    <button class='remove btn btn-danger btn-xs'>
+                        <span class='glyphicon glyphicon-remove'></span>
+                    </button>
+                </td>
+            </tr>
+        <% }); %>
+    </script>
+
+    <script type='text/template' id='piece-edit-template'>
+        <td><input type='text' class='form-control' data-property='name' value='<%= piece.get('name') %>' /></td>
+        <td><input type='text' class='form-control' data-property='description' value='<%= piece.get('description') %>' /></td>
+        <td class='text-right'>
+            <button class='save btn btn-primary btn-xs'>
+                <span class='glyphicon glyphicon-ok'></span>
+            </button>
+            <button class='cancel btn btn-danger btn-xs'>
+                <span class='glyphicon glyphicon-ban-circle'></span>
+            </button>
+        </td>
+    </script>
+
+    <script type="text/template" id="piece-new-template">
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+                <div class='panel-title pull-left'>Nieuw stuk</div>
+                <button id='cancel-new' class='btn btn-danger pull-right'>
+                    <span class='glyphicon glyphicon-remove'></span> Close
+                </button>
+                <div class='clearfix'></div>
+            </div>
+
+            <div class='panel-body'>
+                <div class='form-group' id='new-piece-form'>
+                    <label for='name'>Naam</label>
+                    <input type='text' class='form-control' data-property='name' id='name'/>
+
+                    <label for='description'>Beschrijving</label>
+                    <input type='text' class='form-control' data-property='description' id='description'/>
+
+                    <input type='hidden' class='form-control' data-property='location' value='' id='location'/>
+                    
+                    <label for="piece_serie_id">Serie</label><br/>
+                    <select id="piece_serie_id" class="form_select select2-offscreen" data-property="piece_serie_id" tabindex="-1">
+                        <% _.each(piece_series, function(piece_serie) { %>
+                            <option value=<%= piece_serie.get('id') %>><%= piece_serie.get('name') %></option>
+                        <% }); %>
+                    </select>
+                    <br/>
+                    <br/>
+                    
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Select file</span>
+                        <input id='file_upload' type='file' name='file'>
+                    </span>
+                    
+                    <div id="progress" class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                </div>
+                <button id='save-new' class='btn btn-primary'>Save</button>
+            </div>
+        </div>
+    </script>
+{% endblock %}

@@ -1,26 +1,28 @@
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager, login_required
-from sqlite3 import dbapi2 as sqlite3
+from flask.ext.login import LoginManager
 
 # Startup stuff
 app = Flask(__name__)
 app.config.from_object('config')
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view = 'login'
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 db = SQLAlchemy(app)
 
 # Register blueprints
-from jvdb.api import *
+from jvdb.api import piece_api, piece_serie_api
 from jvdb.views.views import views_blueprint
 from jvdb.views.admin import admin_blueprint
+from jvdb.views.login import login_blueprint
 
 app.register_blueprint(piece_api)
+app.register_blueprint(piece_serie_api)
 app.register_blueprint(views_blueprint)
 app.register_blueprint(admin_blueprint)
+app.register_blueprint(login_blueprint)
 
 
 @app.errorhandler(404)

@@ -8,6 +8,7 @@ class PieceController:
     @staticmethod
     def create(piece_dict):
         """Create piece."""
+        print piece_dict
         piece = Piece.new_dict(piece_dict)
 
         db.session.add(piece)
@@ -19,6 +20,14 @@ class PieceController:
     def get(piece_id):
         """Get a piece by its id."""
         return Piece.query.get(piece_id)
+
+    @staticmethod
+    def update(piece_dict):
+        piece = Piece.merge_dict(piece_dict)
+        db.session.add(piece)
+        db.session.commit()
+
+        return piece
 
     @staticmethod
     def get_all():

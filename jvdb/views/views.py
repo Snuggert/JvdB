@@ -8,6 +8,7 @@ views_blueprint = Blueprint('views', __name__, url_prefix='')
 
 @views_blueprint.route('/works', methods=['GET'])
 @views_blueprint.route('/', methods=['GET'])
+@views_blueprint.route('', methods=['GET'])
 def works():
     sql_pieces = PieceController.get_all()
     pieces = []

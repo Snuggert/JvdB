@@ -16,9 +16,3 @@ for f in filelist:
     os.remove(f)
 
 db.create_all()
-
-
-#Main account
-jvdb = Account('jvdb', 'l3p3l')
-db.session.add(jvdb)
-db.session.commit()

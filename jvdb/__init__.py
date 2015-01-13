@@ -1,10 +1,12 @@
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
+from flaskext.markdown import Markdown
 
 # Startup stuff
 app = Flask(__name__)
 app.config.from_object('config')
+Markdown(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)

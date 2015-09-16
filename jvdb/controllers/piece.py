@@ -8,7 +8,7 @@ class PieceController:
     @staticmethod
     def create(piece_dict):
         """Create piece."""
-        print piece_dict
+        print(piece_dict)
         piece = Piece.new_dict(piece_dict)
 
         db.session.add(piece)

@@ -9,7 +9,9 @@
                 <li><a href="{{url_for('admin.view_piece_series')}}">Series</a></li>
             </ul>
         </div>
-        {% block content %} {% endblock %}
+        <div id="content-wrapper">
+            {% block content %} {% endblock %}
+        </div>
     </div>
 {% endblock %}
 

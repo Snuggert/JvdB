@@ -9,24 +9,30 @@
 </head>
 
 <body>
-
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
+    <div id="wrapper" class="col-md-12 row">
+        <div id="sidebar-wrapper" class="col-md-2 row">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">Jacqueline van den Bos</li>
                 <li><a href="{{url_for('views.works')}}">Laatste Werken</a></li>
                 <li><a href="{{url_for('views.cv')}}">CV</a></li>
-                <li><a href="{{url_for('views.contact')}}">Contact</a></li>
             </ul>
         </div>
-        {% block content %} {% endblock %}
+        <div id="content-wrapper" class="col-md-10  pull-right">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+    <div id="contact" class="col-md-12">
+        <a class="btn btn-default" href="http://facebook.com/jacqueline.vandenbos.98"><i class="fa fa-facebook"></i></a>
+        <a class="btn btn-default" href="mailto:javandenbos@yahoo.com"><i class="fa fa-envelope"></i></a>
+        <a class="btn btn-default" href="http://linkedin.com/pub/jacqueline-van-den-bos/34/787/234/nl"><i class="fa fa-linkedin"></i></a>
     </div>
 
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+        });
     </script>
 </body>
 

@@ -3,6 +3,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flaskext.markdown import Markdown
 
+
 # Startup stuff
 app = Flask(__name__)
 app.config.from_object('config')
@@ -13,6 +14,8 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 db = SQLAlchemy(app)
+
+
 
 # Register blueprints
 from jvdb.api import piece_api, piece_serie_api

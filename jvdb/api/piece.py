@@ -21,11 +21,12 @@ def upload_picture():
     """ Add new picture """
     file = request.files.get('file')
     if file.filename.endswith(".jpg") or file.filename.endswith(".JPG"):
-        file_location_name = os.path.join("./jvdb/static/img/",
-                                          secure_filename(file.filename))
-        file.save(file_location_name)
+        secure_name = secure_filename(file.filename)
+	file_location_name = os.path.join("/var/www/JvdB/jvdb/static/img/",
+                                          secure_name)
+	file.save(file_location_name)
 
-    return jsonify(location=file_location_name)
+    return jsonify(location="/static/img/" + secure_name)
 
 
 @piece_api.route('/<int:piece_id>', methods=['DELETE'])

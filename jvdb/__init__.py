@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flaskext.markdown import Markdown
+import os
 
 
 # Startup stuff
@@ -9,12 +10,13 @@ app = Flask(__name__)
 app.config.from_object('config')
 Markdown(app)
 
+BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 db = SQLAlchemy(app)
-
 
 
 # Register blueprints

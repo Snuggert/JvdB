@@ -1,9 +1,10 @@
 """piece.py - Controller for Piece."""
-import os
 from flask import Blueprint, jsonify, request
 from jvdb.controllers import PieceController
-from jvdb.utils import serialize_sqla
+from jvdb.utils import serialize_sqla, row2dict
 from werkzeug.utils import secure_filename
+from jvdb import BASE_PATH
+import os
 
 piece_api = Blueprint('piece_api', __name__, url_prefix='/api/piece')
 
@@ -22,9 +23,9 @@ def upload_picture():
     file = request.files.get('file')
     if file.filename.endswith(".jpg") or file.filename.endswith(".JPG"):
         secure_name = secure_filename(file.filename)
-	file_location_name = os.path.join("/var/www/JvdB/jvdb/static/img/",
+        file_location_name = os.path.join(BASE_PATH + "/static/img/",
                                           secure_name)
-	file.save(file_location_name)
+    file.save(file_location_name)
 
     return jsonify(location="/static/img/" + secure_name)
 

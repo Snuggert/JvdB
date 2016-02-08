@@ -8,12 +8,12 @@ class PieceController:
     @staticmethod
     def create(piece_dict):
         """Create piece."""
-        print(piece_dict)
         piece = Piece.new_dict(piece_dict)
-
+        piece.piece_serie_id = int(piece_dict['piece_serie_id'])
+        print("DIT IS DE ID", piece.piece_serie_id)
         db.session.add(piece)
         db.session.commit()
-
+        print("DIT IS DE ID", piece.piece_serie_id)
         return piece
 
     @staticmethod

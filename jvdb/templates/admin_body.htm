@@ -1,15 +1,15 @@
 {% extends "admin_base.htm" %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
+    <div id="wrapper" class="col-md-12 row">
+        <div id="sidebar-wrapper" class="col-md-2 row">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">JvdB - Admin</li>
                 <li><a href="{{url_for('admin.view_pieces')}}">Stukken</a></li>
                 <li><a href="{{url_for('admin.view_piece_series')}}">Series</a></li>
             </ul>
         </div>
-        <div id="content-wrapper">
+        <div id="content-wrapper" class="col-md-10  pull-right">
             {% block content %} {% endblock %}
         </div>
     </div>

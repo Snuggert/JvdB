@@ -15,8 +15,7 @@ class Piece(db.Model, BaseEntity):
 
     piece_serie_id = db.Column(db.Integer, db.ForeignKey('piece_serie.id'))
 
-    def __init__(self, name='', description='', location='', piece_serie=None):
+    def __init__(self, name='', description='', location=''):
         self.name = name
         self.description = description
         self.location = location
-        self.piece_serie = piece_serie

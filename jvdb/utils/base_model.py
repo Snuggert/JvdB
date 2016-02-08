@@ -94,6 +94,7 @@ class BaseEntity(object):
         # relationship.
         for key, value in obj.items():
             if key in column_names:
+                print(key)
                 columntype = str(cls.__table__.columns[key].type)
                 if columntype == 'DATE' and value is not None:
                     if isinstance(value, str):

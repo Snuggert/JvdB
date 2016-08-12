@@ -5,15 +5,14 @@ from jvdb.models import Piece
 
 class PieceController:
     """The Controller for piece manipulation."""
+
     @staticmethod
     def create(piece_dict):
         """Create piece."""
         piece = Piece.new_dict(piece_dict)
         piece.piece_serie_id = int(piece_dict['piece_serie_id'])
-        print("DIT IS DE ID", piece.piece_serie_id)
         db.session.add(piece)
         db.session.commit()
-        print("DIT IS DE ID", piece.piece_serie_id)
         return piece
 
     @staticmethod
@@ -23,6 +22,7 @@ class PieceController:
 
     @staticmethod
     def update(piece_dict):
+        """Update a piece."""
         piece = Piece.merge_dict(piece_dict)
         db.session.add(piece)
         db.session.commit()
@@ -36,6 +36,6 @@ class PieceController:
 
     @staticmethod
     def delete(piece):
-        """ Delete product item """
+        """Delete piece item."""
         db.session.delete(piece)
         db.session.commit()

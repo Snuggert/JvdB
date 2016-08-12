@@ -40,7 +40,11 @@
             <tr data-id='<%= piece.get('id') %>'>
                 <td><%= piece.get('name') %></td>
                 <td><%= piece.get('description') %></td>
-                <td><%= piece.piece_serie.get('name') %></td>
+                <td>
+                <% if(piece.piece_serie) { %>
+                    <%= piece.piece_serie.get('name') %>
+                <% } %>
+                </td>
                 <td class='text-right'>
                     <button class='edit btn btn-info btn-xs'>
                         <span class='glyphicon glyphicon-edit'></span>

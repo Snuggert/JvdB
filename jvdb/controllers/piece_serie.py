@@ -5,6 +5,7 @@ from jvdb.models import PieceSerie
 
 class PieceSerieController:
     """The Controller for piece_serie manipulation."""
+
     @staticmethod
     def create(piece_serie_dict):
         """Create piece_serie."""
@@ -22,6 +23,7 @@ class PieceSerieController:
 
     @staticmethod
     def update(piece_serie_dict):
+        """Update a piece_serie."""
         piece_serie = PieceSerie.merge_dict(piece_serie_dict)
         db.session.add(piece_serie)
         db.session.commit()
@@ -35,6 +37,6 @@ class PieceSerieController:
 
     @staticmethod
     def delete(piece_serie):
-        """ Delete product item """
+        """Delete piece serie."""
         db.session.delete(piece_serie)
         db.session.commit()

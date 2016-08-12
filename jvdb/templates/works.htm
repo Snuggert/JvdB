@@ -17,9 +17,9 @@
                 </a>
             </div>
             <div class="col-md-10">
-                <h3><a class="image-link" href="{{piece.location}}">{{piece.name}}</a>
+                <h3 class="piece-title"><a class="image-link" href="{{piece.location}}">{{piece.name}}</a>
                 </h3>
-                <p>{{piece.description}}</p>
+                <p class="piece-description">{{piece.description}}</p>
             </div>
         </div>
         {% if is_multiple(loop.index, 3) %}

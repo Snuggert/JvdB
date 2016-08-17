@@ -16,7 +16,8 @@ def append_piece_series():
 @views_blueprint.route('/', methods=['GET'])
 def home():
     """Route for home viewing."""
-    return redirect(url_for('views.works', serie=1))
+    return redirect(url_for('views.works',
+                            serie=PieceSerieController.get_all()[0].id))
 
 
 @views_blueprint.route('/works/<int:serie>', methods=['GET'])

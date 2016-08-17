@@ -10,7 +10,7 @@ p.piece-description {
     color: grey;
 }
 
-h3.piece-title {
+h4.piece-title {
     margin-top: 10px;
     margin-bottom: 0px;
 }
@@ -44,6 +44,14 @@ h3.piece-title {
 
 #content-wrapper {
     padding-bottom: 30px;
+}
+
+.works-nav {
+    list-style: none;
+}
+
+.works-sidebartitle {
+    margin-bottom: 10px;
 }
 
 .sidebar-nav {

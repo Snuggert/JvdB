@@ -13,7 +13,14 @@
         <div id="sidebar-wrapper" class="col-md-2 row">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">Jacqueline van den Bos</li>
-                <li><a href="{{url_for('views.works')}}">Laatste Werken</a></li>
+                <li>
+                    <h5 class="works-sidebartitle">Laatste Werken</h5>
+                    <ul class="works-nav">
+                    {% for serie in piece_series %}
+                        <li><a href="{{url_for('views.works', serie=serie.id)}}">{{serie.name}}</a></li>
+                    {% endfor %}
+                    </ul>
+                </li>
                 <li><a href="{{url_for('views.cv')}}">CV</a></li>
             </ul>
         </div>

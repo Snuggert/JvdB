@@ -11,14 +11,15 @@
     <div class="row">
     {% for piece in data.pieces %}
         <div class="col-md-4">
-            <div class="col-md-8 portfolio-item">
+            <div class="col-md-9">
                 <a class="image-link" href="{{piece.location}}">
                     <img class="img-responsive" src="{{piece.location}}">
                 </a>
             </div>
             <div class="col-md-10">
-                <h3 class="piece-title"><a class="image-link" href="{{piece.location}}">{{piece.name}}</a>
-                </h3>
+                <h4 class="piece-title">
+                    <a class="image-link" href="{{piece.location}}">{{piece.name}}</a>
+                </h4>
                 <p class="piece-description">{{piece.description}}</p>
             </div>
         </div>

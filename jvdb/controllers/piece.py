@@ -30,6 +30,11 @@ class PieceController:
         return piece
 
     @staticmethod
+    def by_piece_serie(piece_serie_id):
+        """Request pieces by series."""
+        return Piece.query.filter(Piece.piece_serie_id == piece_serie_id).all()
+
+    @staticmethod
     def get_all():
         """Get all pieces."""
         return Piece.query.all()
